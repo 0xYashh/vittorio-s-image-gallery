@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@vercel/analytics": "^1.5.0",
     "cra-template-pwa": "2.0.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-masonry-css": "^1.0.16",
     "react-scripts": "5.0.1",
     "web-vitals": "^5.0.1"
   },

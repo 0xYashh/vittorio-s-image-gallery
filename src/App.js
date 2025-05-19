@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
+import Masonry from 'react-masonry-css';
 import './App.css';
 
 const CATEGORIES = [
@@ -52,38 +53,58 @@ const CATEGORIES = [
   },
 ];
 
-function GalleryCategory({ icon, name, description, images }) {
+const breakpointColumnsObj = {
+  default: 2,
+  900: 2,
+  600: 1
+};
+
+const GalleryCategory = memo(function GalleryCategory({ icon, name, description, images }) {
   const [brokenImages, setBrokenImages] = useState({});
+  const [loadedImages, setLoadedImages] = useState({});
 
   const handleImgError = (img) => {
     setBrokenImages(prev => ({ ...prev, [img]: true }));
+  };
+  const handleImgLoad = (img) => {
+    setLoadedImages(prev => ({ ...prev, [img]: true }));
   };
 
   return (
     <section className="gallery-category">
       <h2><span className="icon">{icon}</span> <span className="cat-title">{name}</span></h2>
       <p className="cat-desc">{description}</p>
-      <div className="gallery-grid">
+      <Masonry
+        breakpointCols={breakpointColumnsObj}
+        className="gallery-masonry"
+        columnClassName="gallery-masonry-column"
+      >
         {images.map(img => (
-          <div className="gallery-img-card" key={img}>
+          <div className="gallery-img-card" key={img} style={{ position: 'relative' }}>
             <a href={process.env.PUBLIC_URL + '/images/' + img} target="_blank" rel="noopener noreferrer">
               {brokenImages[img] ? (
                 <div className="img-placeholder">🖼️</div>
               ) : (
-                <img
-                  src={process.env.PUBLIC_URL + '/images/' + img}
-                  alt={name}
-                  loading="lazy"
-                  onError={() => handleImgError(img)}
-                />
+                <>
+                  <img
+                    src={process.env.PUBLIC_URL + '/images/' + img}
+                    alt={name}
+                    loading="lazy"
+                    onLoad={() => handleImgLoad(img)}
+                    onError={() => handleImgError(img)}
+                  />
+                  {!loadedImages[img] && (
+                    <div className="img-loading-skeleton" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} />
+                  )}
+                </>
               )}
             </a>
           </div>
         ))}
-      </div>
+      </Masonry>
     </section>
   );
-}
+});
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState(null);
