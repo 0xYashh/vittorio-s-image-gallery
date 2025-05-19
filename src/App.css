@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap');
+
+/* Vittorio's Gallery - Minimal, Elegant Gallery Styles */
+body, .gallery-app {
+  background: #101014;
+  color: #f5f5fa;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+}
+
+.gallery-header {
+  padding: 3rem 1rem 2rem 1rem;
+  text-align: center;
+  background: #101014;
+  border-bottom: 1px solid #232526;
+}
+
+.gallery-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  margin: 0 0 0.7rem 0;
+  letter-spacing: 1.5px;
+  color: #fff;
+  font-weight: 700;
+}
+
+.tagline {
+  font-size: 1.3rem;
+  color: #b2b2c2;
+  margin-bottom: 2rem;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  letter-spacing: 0.5px;
+}
+
+.gallery-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  justify-content: center;
+  margin-bottom: 1.2rem;
+}
+
+.gallery-nav button {
+  background: #191a22;
+  color: #f5f5fa;
+  border: none;
+  border-radius: 2rem;
+  padding: 0.7rem 1.5rem;
+  font-size: 1.1rem;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+  margin-bottom: 0.2rem;
+  outline: none;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  box-shadow: 0 2px 8px #0002;
+  font-weight: 600;
+}
+
+.gallery-nav button.active, .gallery-nav button:hover {
+  background: #ffe082;
+  color: #191a22;
+  box-shadow: 0 4px 16px #ffe08233;
+}
+
+main {
+  padding: 2.5rem 1.5rem 3rem 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.gallery-category {
+  margin-bottom: 4rem;
+  animation: fadeIn 0.8s;
+}
+
+.gallery-category h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.1rem;
+  margin: 0 0 0.3rem 0;
+  color: #ffe082;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  letter-spacing: 0.7px;
+  font-weight: 700;
+}
+
+.gallery-category .cat-title {
+  font-weight: 700;
+}
+
+.gallery-category .cat-desc {
+  color: #b2b2c2;
+  font-size: 1.15rem;
+  margin-bottom: 1.5rem;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.7rem;
+  margin-top: 1.5rem;
+}
+
+.gallery-img-card {
+  background: #181a1b;
+  border-radius: 1.3rem;
+  overflow: hidden;
+  border: none;
+  transition: box-shadow 0.18s, border 0.18s, transform 0.18s;
+  position: relative;
+  box-shadow: 0 4px 24px #0004;
+}
+
+.gallery-img-card a {
+  display: block;
+  text-decoration: none;
+}
+
+.gallery-img-card img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  display: block;
+  transition: filter 0.18s, transform 0.18s;
+  filter: brightness(0.98) contrast(1.04);
+  border-radius: 1.3rem;
+  background: #222;
+}
+
+/* Placeholder for broken images */
+.gallery-img-card .img-placeholder {
+  width: 100%;
+  aspect-ratio: 16/9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #222;
+  color: #888;
+  font-size: 2.5rem;
+  border-radius: 1.3rem;
+}
+
+.gallery-img-card:hover {
+  box-shadow: 0 6px 32px #ffe08244, 0 2px 8px #0002;
+  transform: translateY(-4px) scale(1.025);
+}
+
+.gallery-img-card:hover img {
+  filter: brightness(1.04) contrast(1.08) saturate(1.04);
+  transform: scale(1.03);
+}
+
+.gallery-footer {
+  text-align: center;
+  padding: 2rem 0 1.2rem 0;
+  color: #b2b2c2;
+  font-size: 1.1rem;
+  background: #101014;
+  border-top: 1px solid #232526;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.icon {
+  font-size: 1.5em;
+  vertical-align: middle;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (max-width: 900px) {
+  main {
+    padding: 1.2rem 0.5rem 2rem 0.5rem;
+    max-width: 100vw;
+  }
+  .gallery-header h1 {
+    font-size: 2rem;
+  }
+  .gallery-category h2 {
+    font-size: 1.3rem;
+  }
+  .gallery-nav {
+    gap: 0.4rem;
+  }
+  .gallery-nav button {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+  .gallery-grid {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .gallery-header h1 {
+    font-size: 1.2rem;
+  }
+  .gallery-category h2 {
+    font-size: 1.05rem;
+  }
+  .gallery-img-card img {
+    height: auto;
+    aspect-ratio: 16/9;
+    min-height: 80px;
+    max-height: 40vw;
+  }
+  .gallery-grid {
+    gap: 0.5rem;
+    grid-template-columns: 1fr;
+  }
+  main {
+    padding: 0.3rem 0.05rem 0.7rem 0.05rem;
+  }
+  .gallery-category {
+    margin-bottom: 1.2rem;
+  }
+  .gallery-nav {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.2rem;
+  }
+  .gallery-nav button {
+    width: 100%;
+    font-size: 1.1rem;
+    padding: 0.8rem 0.5rem;
+  }
+}
